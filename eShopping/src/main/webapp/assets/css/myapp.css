@@ -13,6 +13,11 @@ body {
     height:100%;
 }
 
+.navbar-inverse {
+  background-color: #efefef;
+  border-color: #080808;
+}
+
 .slide-image {
     width: 100%;
 }
@@ -64,22 +69,21 @@ footer {
 */
 
 .wrapper {	
-	min-height:100%;
-	position: relative;
+ min-height: 100%;
+ position: relative
 }
 
 
 .content {
-	padding-bottom: 60px; /*height of the footer*/	
+	 padding-bottom: 60px;
+	 height: 100%;
 }
 
 
 .footer {
-	width:100%;
-	position:absolute;
-	bottom:20px;
-	height: 60px;
-	
+	 position:absolute;
+	 height: 60px;
+	 bottom: 10px;
 }
 
 

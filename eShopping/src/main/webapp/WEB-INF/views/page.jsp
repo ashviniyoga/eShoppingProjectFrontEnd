@@ -25,33 +25,42 @@
     </script>
 
     <!-- Bootstrap core CSS -->
-    <link href="${css}/bootstrap.css" rel="stylesheet">
+    <link href="${css}/bootstrap.min.css" rel="stylesheet">
+    
+    
+    
 
     <!-- Add custom CSS here -->
     <link href="${css}/myapp.css" rel="stylesheet">
-
+    
+    
 </head>
 
 <body>
+<div class="wrapper">
 
   <!-- Navigation -->
   <%@include file="./shared/navbar.jsp" %>
 
- <!-- Home page -->
-	 <c:if test = "${userClickHome==true }">
-		 <%@include file="home.jsp" %>
-	 </c:if>
- 
-  <c:if test = "${userClickAbout==true }">
-		 <%@include file="about.jsp" %>
-	 </c:if>
-	 
-	  <c:if test = "${userClickContact==true }">
-		 <%@include file="contact.jsp" %>
-	 </c:if>
- 
-    <!-- /.container -->
-
+	<div class="content">
+		 <!-- Home page -->
+			 <c:if test = "${userClickHome==true }">
+				 <%@include file="home.jsp" %>
+			 </c:if>
+		 
+		 	 <c:if test = "${userClickAbout==true }">
+				 <%@include file="about.jsp" %>
+			 </c:if>
+			 
+			  <c:if test = "${userClickContact==true }">
+				 <%@include file="contact.jsp" %>
+			 </c:if>
+		 
+		  	 <c:if test = "${userClickAllProduct==true or userClickCategoryProduct == true}">
+				 <%@include file="listProducts.jsp" %>
+			 </c:if>
+     
+	</div>
    <!-- Footer section -->
    <%@include file="./shared/footer.jsp" %>
     <!-- /.container -->
@@ -60,7 +69,7 @@
     <script src="${js}/jquery.js"></script>
     <script src="${js}/bootstrap.js"></script>
     <script src="${js}/myapp.js"></script>
-
+</div>
 </body>
 
 </html>

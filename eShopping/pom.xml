@@ -12,8 +12,13 @@
   	<spring.version>5.2.0.RELEASE</spring.version>
   </properties>
   <dependencies>
+	  <dependency>
+	  <!-- Linking backend project -->
+			 <groupId>com.ashvini</groupId>
+  			<artifactId>eShoppingBackend</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+	  </dependency>
   <!-- java ee api -->
-  
 	<dependency>
 	    <groupId>javax</groupId>
 	    <artifactId>javaee-api</artifactId>
