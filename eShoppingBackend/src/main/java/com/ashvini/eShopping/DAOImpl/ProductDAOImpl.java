@@ -46,7 +46,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public boolean addProduct(Product product) {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println("Inside try block addProduct()");
+			//System.out.println("Inside try block addProduct()");
 			sessionfactory.getCurrentSession().persist(product);  //persis is used to add new product
 			return true;
 		}catch(Exception e) {
