@@ -1,57 +1,82 @@
 package com.ashvini.eShopping.DAOImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ashvini.eShopping.DAO.CategoryDAO;
 import com.ashvini.eShopping.DTO.Category;
 
 @Repository("categoryDAO")
+@Transactional
 public class CategoryDAOImpl implements CategoryDAO {
-
-	private static List<Category> categories = new ArrayList<>();
 	
-	static {
-		Category c1 = new Category();
-		c1.setId(1);
-		c1.setName("Mobile");
-		c1.setDescription("This is the description of Mobile");
-		c1.setImageURL("mob1.png");
-		
-		categories.add(c1);
-		  c1 = new Category();
-			c1.setId(2);
-			c1.setName("Televsion");
-			c1.setDescription("This is the description of Television");
-			c1.setImageURL("tv1.png");
-			
-			categories.add(c1);
-			  c1 = new Category();
-				c1.setId(3);
-				c1.setName("Laptop");
-				c1.setDescription("This is the description of Laptop");
-				c1.setImageURL("lap1.png");
-				
-				categories.add(c1);
-	}
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	 
 	@Override
 	public List<Category> list() {
 		// TODO Auto-generated method stub
 		System.out.println("Inside the list()");
+		String SelectActiveCategory = "From Category where active = :active";
 		
-		return categories;
-	}
+		Query query = sessionFactory.getCurrentSession().createQuery(SelectActiveCategory);
+		query.setParameter("active",true);
+		
+		return query.getResultList();
+		}
+	/* To get single category */
 	@Override
 	public Category get(int id) {
 		// TODO Auto-generated method stub
-		for(Category c: categories)
-		{
-			if(c.getId()==id)
-				return c;
+		 
+		return sessionFactory.getCurrentSession().get(Category.class,Integer.valueOf(id));
 		}
-		return null;
+	@Override
+
+	public boolean add(Category category) {
+		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().persist(category);
+			return true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	/* to update the category */
+	@Override
+	public boolean update(Category category) {
+		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().update(category);
+		return true;	
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	@Override
+	public boolean delete(Category category) {
+		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().delete(category);
+			return true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			}
+		
 	}
 
 }
